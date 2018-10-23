@@ -1,0 +1,24 @@
+server:
+  port: ${http_port:8080}
+
+spring:
+  application:
+    name: microservices
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://${db_url:localhost}:${db_port:3306}/${db_schema:cloud1}?autoReconnect=true&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: ${db_user:root}
+    password: ${db_password:root}
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+      naming:
+         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+logging:
+      level:
+          org.springframework.web: DEBUG
+          de.ckc.datalogger.controller: DEBUG
+          org.hibernate: DEBUG
